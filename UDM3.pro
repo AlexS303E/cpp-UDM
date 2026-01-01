@@ -13,21 +13,22 @@ CONFIG += c++23
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src\main.cpp \
-    src\mainwindow.cpp \
-    src\qcustomplot.cpp \
-    src\scene.cpp
+    main.cpp \
+    mainwindow.cpp \
+    qcustomplot.cpp \
+    scene.cpp
 
 HEADERS += \
-    src\mainwindow.h \
-    src\qcustomplot.h \
-    src\scene.h
+    mainwindow.h \
+    qcustomplot.h \
+    scene.h
 
 FORMS += \
-    src\mainwindow.ui
+    mainwindow.ui
 
 TRANSLATIONS += \
     UDM3_ru_RU.ts
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
