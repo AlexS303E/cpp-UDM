@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-#include "scene.h"
+#include <Qt3DExtras/Qt3DWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

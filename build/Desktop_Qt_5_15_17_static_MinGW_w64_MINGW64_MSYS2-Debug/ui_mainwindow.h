@@ -17,6 +17,8 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -33,11 +35,19 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab_main;
     QGridLayout *gridLayout_2;
-    QVBoxLayout *verticalLayout;
+    QScrollArea *scrollArea_plot;
+    QWidget *scrollAreaWidgetContents_plot;
+    QVBoxLayout *verticalLayout_plot;
+    QSpacerItem *horizontalSpacer;
+    QWidget *widget;
     QFrame *line_2;
-    QCustomPlot *widget;
+    QLabel *label_2;
+    QCustomPlot *widget_2;
     QFrame *line;
-    QVBoxLayout *verticalLayout_2;
+    QScrollArea *scrollArea_controls;
+    QWidget *scrollAreaWidgetContents_controls;
+    QVBoxLayout *verticalLayout_controls;
+    QSpacerItem *horizontalSpacer_2;
     QLabel *label;
     QDoubleSpinBox *doubleSpinBox;
     QWidget *tab_esc;
@@ -51,7 +61,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(834, 481);
+        MainWindow->resize(865, 502);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
@@ -62,22 +72,49 @@ public:
         tab_main->setObjectName(QString::fromUtf8("tab_main"));
         gridLayout_2 = new QGridLayout(tab_main);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        line_2 = new QFrame(tab_main);
+        scrollArea_plot = new QScrollArea(tab_main);
+        scrollArea_plot->setObjectName(QString::fromUtf8("scrollArea_plot"));
+        scrollArea_plot->setWidgetResizable(true);
+        scrollAreaWidgetContents_plot = new QWidget();
+        scrollAreaWidgetContents_plot->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_plot"));
+        scrollAreaWidgetContents_plot->setGeometry(QRect(0, 0, 402, 392));
+        verticalLayout_plot = new QVBoxLayout(scrollAreaWidgetContents_plot);
+        verticalLayout_plot->setObjectName(QString::fromUtf8("verticalLayout_plot"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_plot->addItem(horizontalSpacer);
+
+        widget = new QWidget(scrollAreaWidgetContents_plot);
+        widget->setObjectName(QString::fromUtf8("widget"));
+
+        verticalLayout_plot->addWidget(widget);
+
+        line_2 = new QFrame(scrollAreaWidgetContents_plot);
         line_2->setObjectName(QString::fromUtf8("line_2"));
         line_2->setFrameShape(QFrame::HLine);
         line_2->setFrameShadow(QFrame::Sunken);
 
-        verticalLayout->addWidget(line_2);
+        verticalLayout_plot->addWidget(line_2);
 
-        widget = new QCustomPlot(tab_main);
-        widget->setObjectName(QString::fromUtf8("widget"));
+        label_2 = new QLabel(scrollAreaWidgetContents_plot);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy);
 
-        verticalLayout->addWidget(widget);
+        verticalLayout_plot->addWidget(label_2);
 
+        widget_2 = new QCustomPlot(scrollAreaWidgetContents_plot);
+        widget_2->setObjectName(QString::fromUtf8("widget_2"));
+        widget_2->setMinimumSize(QSize(0, 150));
 
-        gridLayout_2->addLayout(verticalLayout, 0, 3, 1, 1);
+        verticalLayout_plot->addWidget(widget_2);
+
+        scrollArea_plot->setWidget(scrollAreaWidgetContents_plot);
+
+        gridLayout_2->addWidget(scrollArea_plot, 0, 3, 1, 1);
 
         line = new QFrame(tab_main);
         line->setObjectName(QString::fromUtf8("line"));
@@ -86,20 +123,31 @@ public:
 
         gridLayout_2->addWidget(line, 0, 2, 1, 1);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        label = new QLabel(tab_main);
+        scrollArea_controls = new QScrollArea(tab_main);
+        scrollArea_controls->setObjectName(QString::fromUtf8("scrollArea_controls"));
+        scrollArea_controls->setWidgetResizable(true);
+        scrollAreaWidgetContents_controls = new QWidget();
+        scrollAreaWidgetContents_controls->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_controls"));
+        scrollAreaWidgetContents_controls->setGeometry(QRect(0, 0, 402, 392));
+        verticalLayout_controls = new QVBoxLayout(scrollAreaWidgetContents_controls);
+        verticalLayout_controls->setObjectName(QString::fromUtf8("verticalLayout_controls"));
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_controls->addItem(horizontalSpacer_2);
+
+        label = new QLabel(scrollAreaWidgetContents_controls);
         label->setObjectName(QString::fromUtf8("label"));
 
-        verticalLayout_2->addWidget(label);
+        verticalLayout_controls->addWidget(label);
 
-        doubleSpinBox = new QDoubleSpinBox(tab_main);
+        doubleSpinBox = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
         doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
 
-        verticalLayout_2->addWidget(doubleSpinBox);
+        verticalLayout_controls->addWidget(doubleSpinBox);
 
+        scrollArea_controls->setWidget(scrollAreaWidgetContents_controls);
 
-        gridLayout_2->addLayout(verticalLayout_2, 0, 1, 1, 1);
+        gridLayout_2->addWidget(scrollArea_controls, 0, 1, 1, 1);
 
         tabWidget->addTab(tab_main, QString());
         tab_esc = new QWidget();
@@ -118,7 +166,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 834, 22));
+        menubar->setGeometry(QRect(0, 0, 865, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -135,6 +183,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_main), QCoreApplication::translate("MainWindow", "Main", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_esc), QCoreApplication::translate("MainWindow", "ESC", nullptr));
