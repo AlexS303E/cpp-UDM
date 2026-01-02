@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_3dWindow(nullptr)
+    , m_scene(nullptr)
 {
     ui->setupUi(this);
 
@@ -23,23 +24,29 @@ MainWindow::MainWindow(QWidget *parent)
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     // Создаем сцену
-    Qt3DCore::QEntity *root_entity = createScene();
+    m_scene = new Scene();
 
+    //Загрузка модели
+    Qt3DCore::QEntity* object_Entity = new  Qt3DCore::QEntity(m_scene);
+    Qt3DRender::QSceneLoader* sceneLoader = new Qt3DRender::QSceneLoader(object_Entity);
+    sceneLoader->setSource(QUrl(""));
     // Настраиваем камеру
     Qt3DRender::QCamera *camera = m_3dWindow->camera();
     camera->setFieldOfView(60.0f);
     camera->setPosition(QVector3D(0, 0, 40));
     camera->setViewCenter(QVector3D(0, 0, 0));
 
-    Qt3DExtras::QOrbitCameraController* camera_controller = new Qt3DExtras::QOrbitCameraController(root_entity);
+    // Создаем контроллер камеры
+    Qt3DExtras::QOrbitCameraController* camera_controller = new Qt3DExtras::QOrbitCameraController(m_scene);
     camera_controller->setCamera(camera);
     camera_controller->setLookSpeed(-180);
     camera_controller->setLinearSpeed(50);
 
-    m_3dWindow->setRootEntity(root_entity);
+    // Устанавливаем сцену как корневую сущность
+    m_3dWindow->setRootEntity(m_scene);
 
     // Настраиваем layout для виджета и добавляем контейнер с 3D сценой
-    QVBoxLayout* layout = new QVBoxLayout(ui->widget);
+    QVBoxLayout* layout = new QVBoxLayout(ui->ThreDWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(container);
@@ -48,5 +55,5 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    // m_3dWindow будет удален автоматически, так как контейнер является его родителем
+    // m_3dWindow и m_scene будут удалены автоматически через родительские связи
 }

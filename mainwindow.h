@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <Qt3DExtras/Qt3DWindow>
@@ -9,6 +8,8 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
+
+class Scene;  // Предварительное объявление
 
 class MainWindow : public QMainWindow
 {
@@ -21,5 +22,6 @@ public:
 private:
     Ui::MainWindow *ui;
     Qt3DExtras::Qt3DWindow* m_3dWindow;
+    Scene* m_scene;  // Добавляем указатель на сцену
 };
-#endif // MAINWINDOW_H
+

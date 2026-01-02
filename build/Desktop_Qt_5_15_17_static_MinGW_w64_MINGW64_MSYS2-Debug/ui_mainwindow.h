@@ -38,18 +38,27 @@ public:
     QScrollArea *scrollArea_plot;
     QWidget *scrollAreaWidgetContents_plot;
     QVBoxLayout *verticalLayout_plot;
-    QSpacerItem *horizontalSpacer;
-    QWidget *widget;
+    QWidget *ThreDWidget;
     QFrame *line_2;
     QLabel *label_2;
     QCustomPlot *widget_2;
+    QLabel *label_5;
+    QCustomPlot *widget_3;
+    QLabel *label_6;
+    QCustomPlot *widget_4;
+    QSpacerItem *horizontalSpacer;
     QFrame *line;
     QScrollArea *scrollArea_controls;
     QWidget *scrollAreaWidgetContents_controls;
     QVBoxLayout *verticalLayout_controls;
-    QSpacerItem *horizontalSpacer_2;
     QLabel *label;
     QDoubleSpinBox *doubleSpinBox;
+    QLabel *label_3;
+    QDoubleSpinBox *doubleSpinBox_2;
+    QLabel *label_4;
+    QDoubleSpinBox *doubleSpinBox_3;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *verticalSpacer;
     QWidget *tab_esc;
     QGridLayout *gridLayout_3;
     QWidget *tab_ccn;
@@ -77,17 +86,19 @@ public:
         scrollArea_plot->setWidgetResizable(true);
         scrollAreaWidgetContents_plot = new QWidget();
         scrollAreaWidgetContents_plot->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_plot"));
-        scrollAreaWidgetContents_plot->setGeometry(QRect(0, 0, 402, 392));
+        scrollAreaWidgetContents_plot->setGeometry(QRect(0, 0, 385, 907));
         verticalLayout_plot = new QVBoxLayout(scrollAreaWidgetContents_plot);
         verticalLayout_plot->setObjectName(QString::fromUtf8("verticalLayout_plot"));
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        ThreDWidget = new QWidget(scrollAreaWidgetContents_plot);
+        ThreDWidget->setObjectName(QString::fromUtf8("ThreDWidget"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(ThreDWidget->sizePolicy().hasHeightForWidth());
+        ThreDWidget->setSizePolicy(sizePolicy);
+        ThreDWidget->setMinimumSize(QSize(320, 320));
 
-        verticalLayout_plot->addItem(horizontalSpacer);
-
-        widget = new QWidget(scrollAreaWidgetContents_plot);
-        widget->setObjectName(QString::fromUtf8("widget"));
-
-        verticalLayout_plot->addWidget(widget);
+        verticalLayout_plot->addWidget(ThreDWidget);
 
         line_2 = new QFrame(scrollAreaWidgetContents_plot);
         line_2->setObjectName(QString::fromUtf8("line_2"));
@@ -98,11 +109,11 @@ public:
 
         label_2 = new QLabel(scrollAreaWidgetContents_plot);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy1);
 
         verticalLayout_plot->addWidget(label_2);
 
@@ -111,6 +122,32 @@ public:
         widget_2->setMinimumSize(QSize(0, 150));
 
         verticalLayout_plot->addWidget(widget_2);
+
+        label_5 = new QLabel(scrollAreaWidgetContents_plot);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        verticalLayout_plot->addWidget(label_5);
+
+        widget_3 = new QCustomPlot(scrollAreaWidgetContents_plot);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        widget_3->setMinimumSize(QSize(0, 150));
+
+        verticalLayout_plot->addWidget(widget_3);
+
+        label_6 = new QLabel(scrollAreaWidgetContents_plot);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+
+        verticalLayout_plot->addWidget(label_6);
+
+        widget_4 = new QCustomPlot(scrollAreaWidgetContents_plot);
+        widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setMinimumSize(QSize(0, 150));
+
+        verticalLayout_plot->addWidget(widget_4);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_plot->addItem(horizontalSpacer);
 
         scrollArea_plot->setWidget(scrollAreaWidgetContents_plot);
 
@@ -131,12 +168,10 @@ public:
         scrollAreaWidgetContents_controls->setGeometry(QRect(0, 0, 402, 392));
         verticalLayout_controls = new QVBoxLayout(scrollAreaWidgetContents_controls);
         verticalLayout_controls->setObjectName(QString::fromUtf8("verticalLayout_controls"));
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout_controls->addItem(horizontalSpacer_2);
-
         label = new QLabel(scrollAreaWidgetContents_controls);
         label->setObjectName(QString::fromUtf8("label"));
+        sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy1);
 
         verticalLayout_controls->addWidget(label);
 
@@ -144,6 +179,38 @@ public:
         doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
 
         verticalLayout_controls->addWidget(doubleSpinBox);
+
+        label_3 = new QLabel(scrollAreaWidgetContents_controls);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy1);
+
+        verticalLayout_controls->addWidget(label_3);
+
+        doubleSpinBox_2 = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
+        doubleSpinBox_2->setObjectName(QString::fromUtf8("doubleSpinBox_2"));
+
+        verticalLayout_controls->addWidget(doubleSpinBox_2);
+
+        label_4 = new QLabel(scrollAreaWidgetContents_controls);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        sizePolicy1.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy1);
+
+        verticalLayout_controls->addWidget(label_4);
+
+        doubleSpinBox_3 = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
+        doubleSpinBox_3->setObjectName(QString::fromUtf8("doubleSpinBox_3"));
+
+        verticalLayout_controls->addWidget(doubleSpinBox_3);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_controls->addItem(horizontalSpacer_2);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_controls->addItem(verticalSpacer);
 
         scrollArea_controls->setWidget(scrollAreaWidgetContents_controls);
 
@@ -184,7 +251,11 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "PID(P)", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "PID(I)", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "PID(D)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_main), QCoreApplication::translate("MainWindow", "Main", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_esc), QCoreApplication::translate("MainWindow", "ESC", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_ccn), QCoreApplication::translate("MainWindow", "\320\241\320\241\320\235", nullptr));
