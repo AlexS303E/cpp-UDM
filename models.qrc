@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource prefix="/">
+    <file>3D-models/FPV.obj</file>
+    <!-- Добавьте другие файлы модели, если есть -->
+    <file>3D-models/FPV.mtl</file>
+    <file>3D-models/textures/texture.png</file>
+</qresource>
+</RCC>s

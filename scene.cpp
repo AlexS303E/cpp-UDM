@@ -1,8 +1,10 @@
 #include "scene.h"
+#include <QCoreApplication>
+#include <QFile>
+#include <QDebug>
 
 Scene::Scene(Qt3DCore::QNode *parent)
     : Qt3DCore::QEntity(parent)
-    , m_torus_(nullptr)
     , m_floor_(nullptr)
     , m_material_(nullptr)
     , m_floorMaterial_(nullptr)
@@ -12,6 +14,10 @@ Scene::Scene(Qt3DCore::QNode *parent)
     , m_lightTransform_(nullptr)
     , m_lightEntity_(nullptr)
     , m_floorEntity_(nullptr)
+    , m_objectEntity_(nullptr)
+    , m_objectLoader_(nullptr)
+    , m_objectTransform_(nullptr)
+    , m_objectMaterial_(nullptr)
 {
 
     // ========== СОЗДАЕМ ПОЛ ==========
@@ -22,35 +28,44 @@ Scene::Scene(Qt3DCore::QNode *parent)
     m_floor_->setHeight(50.0f);  // Длина пола
 
     m_floorMaterial_ = new Qt3DExtras::QPhongMaterial(m_floorEntity_);
-    m_floorMaterial_->setDiffuse(QColor(100, 100, 100)); // Серый цвет
+    m_floorMaterial_->setDiffuse(QColor(100, 140, 100)); // Зеленый цвет
     m_floorMaterial_->setAmbient(QColor(80, 80, 80));
 
     m_floorTransform_ = new Qt3DCore::QTransform(m_floorEntity_);
     // Поворачиваем плоскость на 90 градусов вокруг оси X, чтобы она лежала горизонтально
-    m_floorTransform_->setRotationX(90);
-    m_floorTransform_->setTranslation(QVector3D(0, 0, -2)); // Опускаем пол ниже
+    setDefaultFloorRotation(90);
 
     m_floorEntity_->addComponent(m_floor_);
     m_floorEntity_->addComponent(m_floorMaterial_);
     m_floorEntity_->addComponent(m_floorTransform_);
 
-    // ========== СОЗДАЕМ ТОР ==========
-    m_torus_ = new Qt3DExtras::QTorusMesh(this);
-    m_torus_->setRadius(5.0f);      // Уменьшил радиус тора
-    m_torus_->setMinorRadius(2.0f); // Уменьшил минорный радиус
-    m_torus_->setSlices(32);
-    m_torus_->setRings(64);
+    // ======== ЗАГРУЗКА МОДЕЛИ ========
+    m_objectEntity_ = new Qt3DCore::QEntity(this);
+    //ТОЛЬКО ЧЕРЕЗ FILE, QRC не работает
+    QString modelPath = QCoreApplication::applicationDirPath() + "/3D_models/FPV.obj";
+    modelPath = modelPath.replace("\\", "\\\\");
 
-    m_material_ = new Qt3DExtras::QPhongMaterial(this);
-    m_material_->setDiffuse(QColor(50, 220, 220));
+    if (QFile::exists(modelPath)) {
+        qDebug() << "Loading model from:" << modelPath;
 
-    m_transform_ = new Qt3DCore::QTransform(this);
-    m_transform_->setTranslation(QVector3D(0, 0, 0)); // Подняли тор над полом
+        m_objectLoader_ = new Qt3DRender::QSceneLoader(m_objectEntity_);
+        m_objectLoader_->setSource(QUrl::fromLocalFile(modelPath));
+        m_objectEntity_->addComponent(m_objectLoader_);
 
-    // Добавляем компоненты тора к текущей сущности
-    addComponent(m_torus_);
-    addComponent(m_material_);
-    addComponent(m_transform_);
+        m_objectTransform_ = new Qt3DCore::QTransform(m_objectEntity_);
+        m_objectTransform_->setScale(2);
+        m_objectTransform_->setRotationX(90);
+        m_objectTransform_->setTranslation(dron_default_transform_);
+        m_objectEntity_->addComponent(m_objectTransform_);
+
+        m_objectMaterial_ = new Qt3DExtras::QPhongMaterial(m_objectEntity_);
+        m_objectEntity_->addComponent(m_objectMaterial_);
+    } else {
+        qDebug() << "Model file not found at:" << modelPath;
+        m_objectLoader_ = nullptr;
+        m_objectTransform_ = nullptr;
+        m_objectMaterial_ = nullptr;
+    }
 
     // ========== СОЗДАЕМ ИСТОЧНИК СВЕТА ==========
     m_lightEntity_ = new Qt3DCore::QEntity(this);
@@ -70,19 +85,7 @@ Scene::~Scene()
     // Деструктор пустой, так как Qt управляет памятью через родительские связи
 }
 
-void Scene::setTorusRadius(float radius)
-{
-    if (m_torus_ && radius > 0) {
-        m_torus_->setRadius(radius);
-    }
-}
 
-void Scene::setTorusMinorRadius(float minorRadius)
-{
-    if (m_torus_ && minorRadius > 0) {
-        m_torus_->setMinorRadius(minorRadius);
-    }
-}
 
 void Scene::setMaterialColor(const QColor& color)
 {
@@ -111,4 +114,25 @@ void Scene::setFloorColor(const QColor& color)
     if (m_floorMaterial_) {
         m_floorMaterial_->setDiffuse(color);
     }
+}
+
+void Scene::setFloorRotation(float degrees)
+{
+    if (m_floorTransform_) {
+        m_floorTransform_->setRotationX(degrees);
+    }
+}
+
+void Scene::setDefaultFloorRotation(float degrees)
+{
+    // Устанавливаем новое значение по умолчанию
+    m_defaultFloorRotation_ = degrees;
+    // Применяем это значение к текущему повороту
+    setFloorRotation(degrees);
+}
+
+void Scene::resetFloorRotation()
+{
+    // Сбрасываем поворот пола к значению по умолчанию
+    setFloorRotation(m_defaultFloorRotation_);
 }
