@@ -1,0 +1,10 @@
+debug/drone.o
+debug/main.o
+debug/mainwindow.o
+debug/qcustomplot.o
+debug/scene.o
+debug/td_window.o
+debug/udm3_plugin_import.o
+debug/qrc_qmake_qmake_qm_files.o
+debug/moc_mainwindow.o
+debug/moc_qcustomplot.o

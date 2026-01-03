@@ -11,6 +11,7 @@ TARGET = UDM3
 TEMPLATE = app
 
 SOURCES += \
+    drone.cpp \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
     td_window.cpp
 
 HEADERS += \
+    drone.h \
     mainwindow.h \
     qcustomplot.h \
     scene.h \

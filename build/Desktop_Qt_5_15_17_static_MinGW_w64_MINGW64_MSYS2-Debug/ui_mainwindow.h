@@ -46,6 +46,7 @@ public:
     QCustomPlot *widget_3;
     QLabel *label_6;
     QCustomPlot *widget_4;
+    QFrame *line_4;
     QSpacerItem *horizontalSpacer;
     QFrame *line;
     QScrollArea *scrollArea_controls;
@@ -57,6 +58,7 @@ public:
     QDoubleSpinBox *doubleSpinBox_2;
     QLabel *label_4;
     QDoubleSpinBox *doubleSpinBox_3;
+    QFrame *line_3;
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *verticalSpacer;
     QWidget *tab_esc;
@@ -86,7 +88,7 @@ public:
         scrollArea_plot->setWidgetResizable(true);
         scrollAreaWidgetContents_plot = new QWidget();
         scrollAreaWidgetContents_plot->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_plot"));
-        scrollAreaWidgetContents_plot->setGeometry(QRect(0, 0, 385, 907));
+        scrollAreaWidgetContents_plot->setGeometry(QRect(0, -530, 385, 931));
         verticalLayout_plot = new QVBoxLayout(scrollAreaWidgetContents_plot);
         verticalLayout_plot->setObjectName(QString::fromUtf8("verticalLayout_plot"));
         ThreDWidget = new QWidget(scrollAreaWidgetContents_plot);
@@ -114,6 +116,9 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
         label_2->setSizePolicy(sizePolicy1);
+        QFont font;
+        font.setPointSize(12);
+        label_2->setFont(font);
 
         verticalLayout_plot->addWidget(label_2);
 
@@ -125,6 +130,7 @@ public:
 
         label_5 = new QLabel(scrollAreaWidgetContents_plot);
         label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setFont(font);
 
         verticalLayout_plot->addWidget(label_5);
 
@@ -136,6 +142,7 @@ public:
 
         label_6 = new QLabel(scrollAreaWidgetContents_plot);
         label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setFont(font);
 
         verticalLayout_plot->addWidget(label_6);
 
@@ -144,6 +151,13 @@ public:
         widget_4->setMinimumSize(QSize(0, 150));
 
         verticalLayout_plot->addWidget(widget_4);
+
+        line_4 = new QFrame(scrollAreaWidgetContents_plot);
+        line_4->setObjectName(QString::fromUtf8("line_4"));
+        line_4->setFrameShape(QFrame::HLine);
+        line_4->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_plot->addWidget(line_4);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -172,11 +186,13 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         sizePolicy1.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
         label->setSizePolicy(sizePolicy1);
+        label->setFont(font);
 
         verticalLayout_controls->addWidget(label);
 
         doubleSpinBox = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
         doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
+        doubleSpinBox->setFont(font);
 
         verticalLayout_controls->addWidget(doubleSpinBox);
 
@@ -184,11 +200,13 @@ public:
         label_3->setObjectName(QString::fromUtf8("label_3"));
         sizePolicy1.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
         label_3->setSizePolicy(sizePolicy1);
+        label_3->setFont(font);
 
         verticalLayout_controls->addWidget(label_3);
 
         doubleSpinBox_2 = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
         doubleSpinBox_2->setObjectName(QString::fromUtf8("doubleSpinBox_2"));
+        doubleSpinBox_2->setFont(font);
 
         verticalLayout_controls->addWidget(doubleSpinBox_2);
 
@@ -196,13 +214,22 @@ public:
         label_4->setObjectName(QString::fromUtf8("label_4"));
         sizePolicy1.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
         label_4->setSizePolicy(sizePolicy1);
+        label_4->setFont(font);
 
         verticalLayout_controls->addWidget(label_4);
 
         doubleSpinBox_3 = new QDoubleSpinBox(scrollAreaWidgetContents_controls);
         doubleSpinBox_3->setObjectName(QString::fromUtf8("doubleSpinBox_3"));
+        doubleSpinBox_3->setFont(font);
 
         verticalLayout_controls->addWidget(doubleSpinBox_3);
+
+        line_3 = new QFrame(scrollAreaWidgetContents_controls);
+        line_3->setObjectName(QString::fromUtf8("line_3"));
+        line_3->setFrameShape(QFrame::HLine);
+        line_3->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_controls->addWidget(line_3);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -250,15 +277,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\320\232\321\200\320\265\320\275(roll, \317\206)", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\320\240\321\213\321\201\320\272\320\260\320\275\320\270\320\265 (yaw, \317\210)", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\320\242\320\260\320\275\320\263\320\260\320\266 (pitch, \316\270)", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "PID(P)", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "PID(I)", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "PID(D)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_main), QCoreApplication::translate("MainWindow", "Main", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_esc), QCoreApplication::translate("MainWindow", "ESC", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_ccn), QCoreApplication::translate("MainWindow", "\320\241\320\241\320\235", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_ccn), QCoreApplication::translate("MainWindow", "\320\223\320\241\320\235/\320\241\320\241\320\235", nullptr));
     } // retranslateUi
 
 };

@@ -24,8 +24,8 @@ Scene::Scene(Qt3DCore::QNode *parent)
     m_floorEntity_ = new Qt3DCore::QEntity(this);
 
     m_floor_ = new Qt3DExtras::QPlaneMesh(m_floorEntity_);
-    m_floor_->setWidth(50.0f);   // Ширина пола
-    m_floor_->setHeight(50.0f);  // Длина пола
+    m_floor_->setWidth(150.0f);   // Ширина пола
+    m_floor_->setHeight(150.0f);  // Длина пола
 
     m_floorMaterial_ = new Qt3DExtras::QPhongMaterial(m_floorEntity_);
     m_floorMaterial_->setDiffuse(QColor(100, 140, 100)); // Зеленый цвет
@@ -54,8 +54,9 @@ Scene::Scene(Qt3DCore::QNode *parent)
 
         m_objectTransform_ = new Qt3DCore::QTransform(m_objectEntity_);
         m_objectTransform_->setScale(2);
-        m_objectTransform_->setRotationX(90);
-        m_objectTransform_->setTranslation(dron_default_transform_);
+        m_objectTransform_->setRotationZ(45);
+
+        m_objectTransform_->setTranslation(drone_default_location_);
         m_objectEntity_->addComponent(m_objectTransform_);
 
         m_objectMaterial_ = new Qt3DExtras::QPhongMaterial(m_objectEntity_);
