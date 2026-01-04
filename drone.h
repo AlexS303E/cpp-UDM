@@ -13,12 +13,9 @@ enum TargetType{
 
 
 class PolarCoordinate {
-private:
-    double radius;      // Радиус (r) ≥ 0
-    double angle;       // Угол (θ) в радианах
+
 
 public:
-    // Конструкторы
     PolarCoordinate() : radius(0.0), angle(0.0) {}
 
     PolarCoordinate(double r, double theta)
@@ -90,6 +87,9 @@ private:
         }
         return normalized;
     }
+
+    double radius;      // Радиус (r) ≥ 0
+    double angle;       // Угол (θ) в радианах
 };
 
 

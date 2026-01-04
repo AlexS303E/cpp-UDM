@@ -21,4 +21,6 @@ public:
 private:
     Ui::MainWindow *ui;
     td_window* m_tdWindow;
+
+    void InitGraphs();
 };

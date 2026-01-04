@@ -7,6 +7,26 @@
 #include <iostream>
 #include <string>
 
+
+void MainWindow::InitGraphs(){
+    // Настройка внешнего вида графика
+    ui->widget_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->widget_2->xAxis->setLabel("Время, с");
+    ui->widget_2->yAxis->setLabel("Значение");
+    ui->widget_2->legend->setBrush(QBrush(QColor("Red")));
+
+    ui->widget_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->widget_3->xAxis->setLabel("Время, с");
+    ui->widget_3->yAxis->setLabel("Значение");
+    ui->widget_3->legend->setBrush(QBrush(QColor("Blue")));
+
+    ui->widget_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->widget_4->xAxis->setLabel("Время, с");
+    ui->widget_4->yAxis->setLabel("Значение");
+    ui->widget_4->legend->setBrush(QBrush(QColor("Green")));
+}
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -29,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(container);
+
+    InitGraphs();
 }
 
 MainWindow::~MainWindow()

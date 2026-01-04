@@ -24,8 +24,8 @@ Scene::Scene(Qt3DCore::QNode *parent)
     m_floorEntity_ = new Qt3DCore::QEntity(this);
 
     m_floor_ = new Qt3DExtras::QPlaneMesh(m_floorEntity_);
-    m_floor_->setWidth(150.0f);   // Ширина пола
-    m_floor_->setHeight(150.0f);  // Длина пола
+    m_floor_->setWidth(1500.0f);   // Ширина пола
+    m_floor_->setHeight(1500.0f);  // Длина пола
 
     m_floorMaterial_ = new Qt3DExtras::QPhongMaterial(m_floorEntity_);
     m_floorMaterial_->setDiffuse(QColor(100, 140, 100)); // Зеленый цвет
@@ -33,8 +33,8 @@ Scene::Scene(Qt3DCore::QNode *parent)
 
     m_floorTransform_ = new Qt3DCore::QTransform(m_floorEntity_);
     // Поворачиваем плоскость на 90 градусов вокруг оси X, чтобы она лежала горизонтально
-    setDefaultFloorRotation(90);
-
+    m_floorTransform_->setRotationY(90);
+    m_floorTransform_->setTranslation(QVector3D(0,-50,0));
     m_floorEntity_->addComponent(m_floor_);
     m_floorEntity_->addComponent(m_floorMaterial_);
     m_floorEntity_->addComponent(m_floorTransform_);
@@ -54,7 +54,7 @@ Scene::Scene(Qt3DCore::QNode *parent)
 
         m_objectTransform_ = new Qt3DCore::QTransform(m_objectEntity_);
         m_objectTransform_->setScale(2);
-        m_objectTransform_->setRotationZ(45);
+        //m_objectTransform_->setRotationZ(45);
 
         m_objectTransform_->setTranslation(drone_default_location_);
         m_objectEntity_->addComponent(m_objectTransform_);
@@ -72,10 +72,10 @@ Scene::Scene(Qt3DCore::QNode *parent)
     m_lightEntity_ = new Qt3DCore::QEntity(this);
     m_light_ = new Qt3DRender::QPointLight(m_lightEntity_);
     m_light_->setColor(Qt::white);
-    m_light_->setIntensity(1.0f);
+    m_light_->setIntensity(1.4f);
 
     m_lightTransform_ = new Qt3DCore::QTransform(m_lightEntity_);
-    m_lightTransform_->setTranslation(QVector3D(10, 20, 30)); // Поднимаем источник света выше
+    m_lightTransform_->setTranslation(QVector3D(20, 80, 90)); // Поднимаем источник света выше
 
     m_lightEntity_->addComponent(m_light_);
     m_lightEntity_->addComponent(m_lightTransform_);
@@ -85,8 +85,6 @@ Scene::~Scene()
 {
     // Деструктор пустой, так как Qt управляет памятью через родительские связи
 }
-
-
 
 void Scene::setMaterialColor(const QColor& color)
 {
@@ -137,3 +135,4 @@ void Scene::resetFloorRotation()
     // Сбрасываем поворот пола к значению по умолчанию
     setFloorRotation(m_defaultFloorRotation_);
 }
+

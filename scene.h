@@ -15,7 +15,7 @@ public:
     Qt3DExtras::QPlaneMesh* floorMesh() const { return m_floor_; }
     Qt3DExtras::QPhongMaterial* material() const { return m_material_; }
     Qt3DCore::QTransform* transform() const { return m_transform_; }
-   QVector3D GetDroneLocation() const { return drone_default_location_; }
+    QVector3D GetDroneLocation() const { return drone_default_location_; }
 
     // Методы для изменения параметров сцены
     void setMaterialColor(const QColor& color);
@@ -27,6 +27,11 @@ public:
     void setDefaultFloorRotation(float degrees);
     void resetFloorRotation();
 
+    // Методы для управления фоном
+    void setSkyboxEnabled(bool enabled);
+    void setBackgroundColor(const QColor& color);
+    void setSkyboxTexture(const QString& texturePath);
+    void setSkyboxColor(const QColor& color);
 private:
     Qt3DExtras::QPlaneMesh* m_floor_;
     Qt3DExtras::QPhongMaterial* m_material_;
@@ -42,8 +47,8 @@ private:
     Qt3DRender::QSceneLoader* m_objectLoader_;
     Qt3DCore::QTransform* m_objectTransform_;
     Qt3DExtras::QPhongMaterial* m_objectMaterial_;
-    QVector3D drone_default_location_ = QVector3D(0,0,5);
+    QVector3D drone_default_location_ = QVector3D(0,0,15);
 
     float m_defaultFloorRotation_;
-};
 
+};

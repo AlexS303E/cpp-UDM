@@ -18,8 +18,8 @@ td_window::td_window()
     // Настраиваем камеру
     camera_ = this->camera();
     camera_->setFieldOfView(60.0f);
-    camera_->setPosition(QVector3D(0, -40, 30));
-    camera_->setViewCenter(m_scene_->GetDroneLocation());
+    camera_->setPosition(QVector3D(0, 30, 60));
+    camera_->setViewCenter(m_scene_->GetDroneLocation()+QVector3D(0,3,-3.1));
 
     // Создаем контроллер камеры
     camera_controller_ = new Qt3DExtras::QOrbitCameraController(m_scene_);
