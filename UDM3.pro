@@ -16,14 +16,16 @@ SOURCES += \
     mainwindow.cpp \
     qcustomplot.cpp \
     scene.cpp \
-    td_window.cpp
+    td_window.cpp \
+    json.cpp \
 
 HEADERS += \
     drone.h \
     mainwindow.h \
     qcustomplot.h \
     scene.h \
-    td_window.h
+    td_window.h \
+    json.h \
 
 FORMS += \
     mainwindow.ui

@@ -16,7 +16,7 @@ Scene::Scene(Qt3DCore::QNode *parent)
     , m_floorEntity_(nullptr)
     , m_defaultFloorRotation_(0.0f)
     , m_skyboxEnabled_(true)
-    , m_skyboxColor_(71, 148, 255)
+    , m_skyboxColor_(144, 208, 255)
 {
     // ========== СОЗДАЕМ ПОЛ ==========
     m_floorEntity_ = new Qt3DCore::QEntity(this);
@@ -41,7 +41,7 @@ Scene::Scene(Qt3DCore::QNode *parent)
     LoadOBJ(drone_data_, "FPV.obj");
     if (drone_data_.Transform && drone_data_.Material) {
         drone_data_.Transform->setScale(2);
-        drone_data_.Material->setDiffuse(QColor(60,60,60));
+        drone_data_.Material->setDiffuse(QColor(120,120,120));
     }
 
     // ======== ЗАГРУЗКА SkyBox ========
@@ -49,7 +49,7 @@ Scene::Scene(Qt3DCore::QNode *parent)
     if (sky_box_.Transform && sky_box_.Material) {
         sky_box_.Transform->setScale(1000);
         sky_box_.Material->setDiffuse(m_skyboxColor_);
-        sky_box_.Material->setAmbient(m_skyboxColor_);
+        sky_box_.Material->setAmbient(Qt::black);
         sky_box_.Material->setSpecular(Qt::black);
     }
 
