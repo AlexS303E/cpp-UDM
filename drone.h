@@ -27,24 +27,14 @@ public:
     double getAngleDegrees() const { return angle * 180.0 / M_PI; }  // В градусах
 
     // Сеттеры с валидацией
-    void setRadius(double r) {
-        radius = std::abs(r);
-    }
+    void setRadius(double r);
 
-    void setAngle(double theta) {
-        angle = normalizeAngle(theta);
-    }
+    void setAngle(double theta);
 
-    void setAngleDegrees(double degrees) {
-        angle = normalizeAngle(degrees * M_PI / 180.0);
-    }
+    void setAngleDegrees(double degrees);
 
     // Преобразование в декартовы координаты
-    std::pair<double, double> toCartesian() const {
-        double x = radius * std::cos(angle);
-        double y = radius * std::sin(angle);
-        return {x, y};
-    }
+    std::pair<double, double> toCartesian() const;
 
     // Создание из декартовых координат (статический метод)
     static PolarCoordinate fromCartesian(double x, double y) {
@@ -54,23 +44,12 @@ public:
     }
 
     // Расстояние между двумя точками
-    double distanceTo(const PolarCoordinate& other) const {
-        // Используем теорему косинусов для полярных координат
-        return std::sqrt(
-            radius * radius +
-            other.radius * other.radius -
-            2 * radius * other.radius * std::cos(angle - other.angle)
-            );
-    }
+    double distanceTo(const PolarCoordinate& other) const;
 
     // Операции
-    PolarCoordinate rotate(double deltaTheta) const {
-        return PolarCoordinate(radius, angle + deltaTheta);
-    }
+    PolarCoordinate rotate(double deltaTheta) const;
 
-    PolarCoordinate scale(double factor) const {
-        return PolarCoordinate(radius * factor, angle);
-    }
+    PolarCoordinate scale(double factor) const;
 
     // Вывод в поток
     friend std::ostream& operator<<(std::ostream& os, const PolarCoordinate& p) {

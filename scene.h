@@ -5,6 +5,14 @@
 #include <Qt3DRender>
 #include <QColor>
 
+struct OBJInSceneData{
+    Qt3DCore::QEntity* Entity = nullptr;
+    Qt3DRender::QMesh* Mesh = nullptr; // ← Заменили QSceneLoader на QMesh
+    Qt3DCore::QTransform* Transform = nullptr;
+    Qt3DExtras::QPhongMaterial* Material = nullptr;
+    QVector3D Location = QVector3D(0,0,0);
+};
+
 class Scene : public Qt3DCore::QEntity
 {
 public:
@@ -15,7 +23,7 @@ public:
     Qt3DExtras::QPlaneMesh* floorMesh() const { return m_floor_; }
     Qt3DExtras::QPhongMaterial* material() const { return m_material_; }
     Qt3DCore::QTransform* transform() const { return m_transform_; }
-    QVector3D GetDroneLocation() const { return drone_default_location_; }
+    QVector3D GetDroneLocation() const { return drone_data_.Location; }
 
     // Методы для изменения параметров сцены
     void setMaterialColor(const QColor& color);
@@ -32,7 +40,10 @@ public:
     void setBackgroundColor(const QColor& color);
     void setSkyboxTexture(const QString& texturePath);
     void setSkyboxColor(const QColor& color);
+
 private:
+    void LoadOBJ(OBJInSceneData& obj_data, const QString&);
+
     Qt3DExtras::QPlaneMesh* m_floor_;
     Qt3DExtras::QPhongMaterial* m_material_;
     Qt3DExtras::QPhongMaterial* m_floorMaterial_;
@@ -43,12 +54,10 @@ private:
     Qt3DCore::QEntity* m_lightEntity_;
     Qt3DCore::QEntity* m_floorEntity_;
 
-    Qt3DCore::QEntity* m_objectEntity_;
-    Qt3DRender::QSceneLoader* m_objectLoader_;
-    Qt3DCore::QTransform* m_objectTransform_;
-    Qt3DExtras::QPhongMaterial* m_objectMaterial_;
-    QVector3D drone_default_location_ = QVector3D(0,0,15);
+    OBJInSceneData drone_data_;
+    OBJInSceneData sky_box_;
 
     float m_defaultFloorRotation_;
-
+    bool m_skyboxEnabled_;
+    QColor m_skyboxColor_;
 };
