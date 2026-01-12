@@ -100,6 +100,27 @@ win32 {
     }
 }
 
+# Копирование папки 3D_models в директорию сборки
+CONFIG(debug, debug|release) {
+    BUILD_PATH = $$OUT_PWD/debug
+} else {
+    BUILD_PATH = $$OUT_PWD/release
+}
+
+# Определяем путь к папке сборки
+CONFIG(debug, debug|release) {
+    BUILD_PATH = $$OUT_PWD/debug
+} else {
+    BUILD_PATH = $$OUT_PWD/release
+}
+
+# Копируем папку 3D_models с помощью встроенной функции COPIES
+3d_models.files = $$PWD/3D_models
+3d_models.path = $$BUILD_PATH
+COPIES += 3d_models
+
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

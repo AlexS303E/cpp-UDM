@@ -5,6 +5,8 @@
 #include <Qt3DRender>
 #include <QColor>
 
+#include "drone.h"
+
 struct OBJInSceneData{
     Qt3DCore::QEntity* Entity = nullptr;
     Qt3DRender::QMesh* Mesh = nullptr; // ← Заменили QSceneLoader на QMesh
@@ -40,6 +42,8 @@ public:
     void setBackgroundColor(const QColor& color);
     void setSkyboxTexture(const QString& texturePath);
     void setSkyboxColor(const QColor& color);
+
+    void LinkDroneToModel(Drone* drone);
 
 private:
     void LoadOBJ(OBJInSceneData& obj_data, const QString&);

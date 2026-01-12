@@ -177,3 +177,16 @@ void Scene::LoadOBJ(OBJInSceneData& obj_data, const QString& obj_name) {
     obj_data.Entity->addComponent(obj_data.Transform);
     obj_data.Entity->addComponent(obj_data.Material);
 }
+
+
+void Scene::LinkDroneToModel(Drone* drone) {
+    if (drone && drone_data_.Transform) {
+        // Передаем данные модели дрона объекту Drone
+        drone->SetDroneModelData(&drone_data_);
+
+        // Устанавливаем начальное вращение
+        drone->SetDefaultRotation();
+
+        qDebug() << "Drone linked to 3D model successfully";
+    }
+}
