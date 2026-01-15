@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 
+//#include "opencv2/core/core.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;

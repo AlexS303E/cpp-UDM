@@ -51,6 +51,8 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(container);
 
     InitGraphs();
+
+    //qDebug() << "OpenCV version :" << CV_VERSION;
 }
 
 MainWindow::~MainWindow()

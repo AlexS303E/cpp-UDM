@@ -25,6 +25,7 @@ std::pair<double, double> PolarCoordinate::toCartesian() const {
     return {x, y};
 }
 
+
 double PolarCoordinate::distanceTo(const PolarCoordinate& other) const {
     // Используем теорему косинусов для полярных координат
     return std::sqrt(
