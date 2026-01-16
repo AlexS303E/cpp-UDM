@@ -1,4 +1,4 @@
-#include "drone.h"
+//#include "drone.h" // is used in "scene.h" looks like macro include (m.b. need #include guards)
 #include <iostream>
 #include <regex>
 #include <QQuaternion>

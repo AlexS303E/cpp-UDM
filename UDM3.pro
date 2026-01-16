@@ -4,7 +4,8 @@ QT += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++23
+#CONFIG += c++23 # Comm by MDV
+CONFIG += c++17 # after switching it worked
 CONFIG += no_qmlimportscanner
 
 TARGET = UDM3
