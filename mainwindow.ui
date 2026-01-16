@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>853</width>
-    <height>540</height>
+    <width>922</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,8 +35,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>396</width>
-             <height>430</height>
+             <width>431</width>
+             <height>418</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_controls">
@@ -175,7 +175,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>379</width>
+             <width>413</width>
              <height>931</height>
             </rect>
            </property>
@@ -183,7 +183,7 @@
             <item>
              <widget class="QWidget" name="ThreDWidget" native="true">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -193,6 +193,9 @@
                 <width>320</width>
                 <height>320</height>
                </size>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
               </property>
              </widget>
             </item>
@@ -324,7 +327,7 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>70</width>
+              <width>268</width>
               <height>0</height>
              </size>
             </property>
@@ -342,11 +345,23 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>178</width>
-               <height>428</height>
+               <width>268</width>
+               <height>399</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_plot_2">
+              <property name="leftMargin">
+               <number>9</number>
+              </property>
+              <property name="topMargin">
+               <number>9</number>
+              </property>
+              <property name="rightMargin">
+               <number>9</number>
+              </property>
+              <property name="bottomMargin">
+               <number>9</number>
+              </property>
               <item>
                <widget class="QLabel" name="label_7">
                 <property name="sizePolicy">
@@ -357,7 +372,7 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>70</width>
+                  <width>250</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -381,7 +396,7 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>160</width>
+                  <width>250</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -422,7 +437,7 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>160</width>
+                  <width>250</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -441,7 +456,7 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>160</width>
+                  <width>250</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -679,7 +694,7 @@
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>584</width>
+                      <width>565</width>
                       <height>580</height>
                      </rect>
                     </property>
@@ -1037,7 +1052,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>853</width>
+     <width>922</width>
      <height>22</height>
     </rect>
    </property>

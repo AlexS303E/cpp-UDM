@@ -44,7 +44,7 @@ Scene::Scene(Qt3DCore::QNode *parent)
         drone_data_.Material->setDiffuse(QColor(120,120,120));
     }
 
-    // ======== ЗАГРУЗКА SkyBox ========
+    // ========= ЗАГРУЗКА SkyBox =========
     LoadOBJ(sky_box_, "SkyBox.obj");
     if (sky_box_.Transform && sky_box_.Material) {
         sky_box_.Transform->setScale(1000);
