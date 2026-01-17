@@ -26,6 +26,15 @@ void MainWindow::InitGraphs(){
     ui->widget_4->legend->setBrush(QBrush(QColor("Green")));
 }
 
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+    QMainWindow::resizeEvent(event);
+
+    // Обновляем геометрию ThreDWidget при изменении размера
+    if (ui->ThreDWidget->layout()) {
+        ui->ThreDWidget->layout()->update();
+    }
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,15 +53,32 @@ MainWindow::MainWindow(QWidget *parent)
     container->setMinimumSize(QSize(400, 300));
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    // Настраиваем layout для виджета и добавляем контейнер с 3D сценой
+    // ВАЖНО: Отключаем полосы прокрутки для контейнера
+    container->setAttribute(Qt::WA_TransparentForMouseEvents, false);
+    container->setFocusPolicy(Qt::NoFocus);
+
+    // Настраиваем scrollArea
+    ui->scrollArea_plot->setWidgetResizable(true);
+    ui->scrollArea_plot->setAlignment(Qt::AlignCenter); // Центрируем содержимое
+    ui->scrollArea_plot->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scrollArea_plot->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // Настраиваем layout для ThreDWidget
     QVBoxLayout* layout = new QVBoxLayout(ui->ThreDWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-    layout->addWidget(container);
+    layout->setAlignment(Qt::AlignCenter); // Центрируем содержимое
+
+    // Создаем промежуточный виджет для правильного центрирования
+    QWidget* centeringWidget = new QWidget();
+    QVBoxLayout* centeringLayout = new QVBoxLayout(centeringWidget);
+    centeringLayout->setContentsMargins(0, 0, 0, 0);
+    centeringLayout->setAlignment(Qt::AlignCenter);
+    centeringLayout->addWidget(container);
+
+    layout->addWidget(centeringWidget);
 
     InitGraphs();
-
-    //qDebug() << "OpenCV version :" << CV_VERSION;
 }
 
 MainWindow::~MainWindow()
